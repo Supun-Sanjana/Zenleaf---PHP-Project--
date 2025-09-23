@@ -1,4 +1,4 @@
-<div class="mt-10  m-20">
+<div class="mt-10  m-20" id="accessories">
     <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center">
         <i class="fas fa-tools text-orange-600 mr-3"></i>
         Bonsai Accessories

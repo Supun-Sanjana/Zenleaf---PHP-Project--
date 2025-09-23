@@ -12,6 +12,7 @@
     require_once '../src/templates/shared/flowering.php';
     require_once '../src/templates/shared/miniature.php';
     require_once '../src/templates/shared/accessories.php';
+    require_once '../src/templates/shared/about.php';
 
 
     // 3. Finally, include the footer. This will close the <body> and <html> tags

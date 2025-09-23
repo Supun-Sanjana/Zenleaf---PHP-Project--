@@ -1,4 +1,4 @@
- <div class="mt-10  m-20">
+ <div class="mt-10  m-20" id="miniature">
             <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center">
                 <i class="fas fa-desktop text-blue-600 mr-3"></i>
                 Miniature Bonsai (Desk Plants)

@@ -10,15 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/register.css">
-   
+    <link rel="stylesheet" href="../public/assets/css/register.css">
+
 </head>
 <body>
 
 <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden transition-all duration-300 shadow-xl">
 
     <!-- Header -->
-    <div class="bg-gradient-to-r from-[#00a8a3] to-[#8582f4] px-8 py-10 text-center">
+    <div class="bg-gradient-to-r from-emerald-600 to-teal-400 px-8 py-10 text-center">
         <h1 class="text-2xl font-bold text-white mb-2">Create Your Account</h1>
         <p class="text-[#a0f0ed] text-sm">Join ZenLeaf today and get started</p>
     </div>
@@ -90,11 +90,11 @@
 
         <!-- Footer -->
         <div class="flex items-center justify-between">
-            <a href="#" class="text-sm font-medium text-[#00a8a3] hover:text-[#00b6af] transition-colors duration-200">
+            <a href="login.php" class="text-sm font-medium text-[#00a8a3] hover:text-[#00b6af] transition-colors duration-200">
                 Already registered?
             </a>
             <button type="submit"
-                class="bg-gradient-to-r from-[#00a8a3] to-[#8582f4] text-white py-3 px-6 rounded-lg font-medium hover:from-[#00b6af] hover:to-[#9a92f6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00a8a3] transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg">
+                class="bg-gradient-to-r from-emerald-600 to-teal-400 text-white py-3 px-6 rounded-lg font-medium hover:from-[#00b6af] hover:to-[#9a92f6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00a8a3] transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg">
                 Register
             </button>
         </div>
