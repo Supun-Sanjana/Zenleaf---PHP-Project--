@@ -1,0 +1,2 @@
+<!-- Public homepage (Customer view) -->
+ 
