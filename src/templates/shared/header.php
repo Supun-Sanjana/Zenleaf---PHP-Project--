@@ -52,7 +52,7 @@ session_start();
                         <a href="../src/backend/auth_logout.php" class="text-gray-700 hover:text-emerald-600 transition-colors">Logout</a>
                     <?php else: ?>
                         <?php // User is a guest ?>
-                        <a href="/login.php" class="px-4 py-2 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors">
+                        <a href="../public/login.php" class="px-4 py-2 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors">
                             Login
                         </a>
                     <?php endif; ?>

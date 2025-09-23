@@ -1,1 +1,0 @@
-<!-- Single script to handle login for all roles -->
