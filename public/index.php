@@ -8,8 +8,12 @@
     // 2. Include the content for this specific page.
     // For the homepage, we'll include the hero section you created.
     require_once '../src/templates/shared/hero.php';
+    require_once '../src/templates/shared/indoor.php';
+    require_once '../src/templates/shared/flowering.php';
+    require_once '../src/templates/shared/miniature.php';
+    require_once '../src/templates/shared/accessories.php';
 
-   
+
     // 3. Finally, include the footer. This will close the <body> and <html> tags
     // and can include your site-wide JavaScript files.
     require_once '../src/templates/shared/footer.php';

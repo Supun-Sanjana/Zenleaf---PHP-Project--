@@ -110,7 +110,7 @@
                               I've also added a fallback `onerror` to show a placeholder if the image is not found.
                             -->
                             <img src="assets/images/hero.png"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/600x600/10B981/FFFFFF?text=Indoor+Plant';"
+
                                  alt="Premium Indoor Plant"
                                  class="w-full h-auto rounded-2xl shadow-2xl">
 
