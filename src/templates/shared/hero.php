@@ -29,9 +29,17 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
         }
     </style>
 </head>
@@ -65,14 +73,14 @@
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="./shop.php">
                             <button
-                            class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                            <span>Shop Plants</span>
-                            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </button>
+                                class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                                <span>Shop Plants</span>
+                                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </button>
                         </a>
 
                         <button
@@ -111,10 +119,8 @@
                               If this HTML file is in the `public` folder, the path should start from there.
                               I've also added a fallback `onerror` to show a placeholder if the image is not found.
                             -->
-                            <img src="assets/images/hero.png"
-
-                                 alt="Premium Indoor Plant"
-                                 class="w-full h-auto rounded-2xl shadow-2xl">
+                            <img src="assets/images/hero.png" alt="Premium Indoor Plant"
+                                class="w-full h-auto rounded-2xl shadow-2xl">
 
                             <!-- Floating UI elements -->
                             <div class="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl">
@@ -143,5 +149,7 @@
     <!-- Flowbite JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
+
+
 
 </html>

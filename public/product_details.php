@@ -1,1 +1,0 @@
-<!-- Public view of a single product -->

@@ -1,1 +1,0 @@
-<!-- Customer's account page -->
