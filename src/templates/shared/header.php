@@ -50,7 +50,6 @@ session_start();
 
                 <!-- Auth Buttons -->
                 <div class="flex items-center space-x-4">
-                    <!-- FIX 2: Replaced Laravel syntax with pure PHP session logic -->
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <?php // User is logged in ?>
                         <a href="/account.php" class="text-gray-700 hover:text-emerald-600 transition-colors">My Account</a>

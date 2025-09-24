@@ -1,3 +1,8 @@
+<?php
+include('../../backend/admin_auth.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
