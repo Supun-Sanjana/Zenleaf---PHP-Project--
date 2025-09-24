@@ -51,17 +51,16 @@ session_start();
                 <!-- Auth Buttons -->
                 <div class="flex items-center space-x-4">
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <?php // User is logged in ?>
                         <a href="/account.php" class="text-gray-700 hover:text-emerald-600 transition-colors">My Account</a>
-                        <a href="../src/backend/auth_logout.php"
+                        <a href="../src/backend/customer/auth_logout.php"
                             class="text-gray-700 hover:text-emerald-600 transition-colors">Logout</a>
                     <?php else: ?>
-                        <?php // User is a guest ?>
                         <a href="../public/login.php"
                             class="px-4 py-2 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors">
                             Login
                         </a>
                     <?php endif; ?>
+
                 </div>
             </div>
         </div>
