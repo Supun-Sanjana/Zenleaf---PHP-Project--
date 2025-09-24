@@ -63,7 +63,8 @@
 
                     <!-- CTA Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button
+                        <a href="./shop.php">
+                            <button
                             class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                             <span>Shop Plants</span>
                             <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200"
@@ -72,6 +73,7 @@
                                     d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
                         </button>
+                        </a>
 
                         <button
                             class="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-white/10 hover:bg-emerald-600/20 rounded-full backdrop-blur-sm border border-white/20 hover:border-emerald-400/50 transform hover:scale-105 transition-all duration-300">

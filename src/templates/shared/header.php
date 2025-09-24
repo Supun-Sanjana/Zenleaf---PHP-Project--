@@ -55,10 +55,15 @@ session_start();
                         <div class="relative" x-data="{ open: false }">
                             <button onclick="document.getElementById('dropdown-menu').classList.toggle('hidden')"
                                 class="flex items-center focus:outline-none">
-                                <img src="<?php echo !empty($_SESSION['image']) ? '../../public/uploads/' . $_SESSION['image'] : ''; ?>"
-                                    alt="Profile"
-                                    class="w-10 h-10 rounded-full border-2 border-emerald-400 object-cover hover:border-emerald-600 transition-colors">
- 
+                                <?php
+                                $userName = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'U';
+                                $letter = strtoupper(substr($userName, 0, 1));
+                                ?>
+
+                                <div
+                                    class="w-10 h-10 flex items-center justify-center rounded-full bg-emerald-600 text-white font-bold text-lg">
+                                    <?php echo $letter; ?>
+                                </div>
 
                                 <!-- Dropdown Menu -->
                                 <div id="dropdown-menu"

@@ -18,19 +18,15 @@ if (isset($_POST['submit'])) {
         // Verify password (assuming bcrypt hash stored in DB)
         if (password_verify($password, $row['password'])) {
 
-            // Check if user is a customer
-            if (strtolower($row['type']) === 'customer' || strtolower($row['type']) === 'admin') {
+            // Set session variables
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['user_name'] = $row['user_name'];
+            $_SESSION['type'] = $row['type'];
+            $_SESSION['first_name'] = $row['first_name'];
 
-                // Set session variables
-                $_SESSION['user_id'] = $row['user_id'];
-                $_SESSION['user_name'] = $row['user_name'];
-                $_SESSION['type'] = $row['type'];
-
-                // Redirect to customer dashboard or homepage
-                header("Location: ../../../public/index.php");
-                exit;
-
-            } 
+            // Redirect to customer dashboard or homepage
+            header("Location: ../../../public/index.php");
+            exit;
 
         } else {
             // Wrong password
