@@ -49,19 +49,48 @@ session_start();
                 </div>
 
                 <!-- Auth Buttons -->
-                <div class="flex items-center space-x-4">
+                <div class="relative flex items-center space-x-4">
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <a href="/account.php" class="text-gray-700 hover:text-emerald-600 transition-colors">My Account</a>
-                        <a href="../src/backend/customer/auth_logout.php"
-                            class="text-gray-700 hover:text-emerald-600 transition-colors">Logout</a>
+                        <!-- Profile Image Dropdown -->
+                        <div class="relative" x-data="{ open: false }">
+                            <button onclick="document.getElementById('dropdown-menu').classList.toggle('hidden')"
+                                class="flex items-center focus:outline-none">
+                                <img src="<?php echo !empty($_SESSION['image']) ? '../../public/uploads/' . $_SESSION['image'] : ''; ?>"
+                                    alt="Profile"
+                                    class="w-10 h-10 rounded-full border-2 border-emerald-400 object-cover hover:border-emerald-600 transition-colors">
+ 
+
+                                <!-- Dropdown Menu -->
+                                <div id="dropdown-menu"
+                                    class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg py-2 z-50">
+                                    <a href="../public/update_profile.php"
+                                        class="block px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-emerald-400 transition-colors">Update
+                                        Profile</a>
+                                    <a href="../src/backend/customer/auth_logout.php"
+                                        class="block px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-emerald-400 transition-colors">Logout</a>
+                                </div>
+                        </div>
                     <?php else: ?>
+                        <!-- Guest User -->
                         <a href="../public/login.php"
                             class="px-4 py-2 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors">
                             Login
                         </a>
                     <?php endif; ?>
-
                 </div>
+
+                <script>
+                    //  Close dropdown if clicked outside
+                    window.addEventListener('click', function (e) {
+                        const dropdown = document.getElementById('dropdown-menu');
+                        if (!dropdown.contains(e.target) && !e.target.closest('button')) {
+                            dropdown.classList.add('hidden');
+                        }
+                    });
+                </script>
+
+
+
             </div>
         </div>
     </nav>

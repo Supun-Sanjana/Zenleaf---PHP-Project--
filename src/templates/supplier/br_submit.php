@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,74 +16,97 @@
         }
     </style>
 </head>
-<body class="bg-gray-900 flex items-center justify-center min-h-screen p-4">
 
-    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 md:p-10">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Business Registration</h2>
-            <p class="text-gray-600">Please fill out the form to register your business.</p>
+<body class="bg-gray-900 ">
+<?php include "header.php" ?>
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 md:p-10">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Business Registration</h2>
+                <p class="text-gray-600">Please fill out the form to register your business.</p>
+            </div>
+
+            <form action="#" method="POST" class="space-y-6">
+                <!-- Business Name -->
+                <div>
+                    <label for="business-name" class="block text-sm font-medium text-gray-700 mb-1">Business
+                        Name</label>
+                    <input type="text" name="business-name" id="business-name" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out"
+                        placeholder="e.g., ZenLeaf Inc.">
+                </div>
+
+                <!-- Business Type -->
+                <div>
+                    <label for="business-type" class="block text-sm font-medium text-gray-700 mb-1">Business
+                        Type</label>
+                    <select id="business-type" name="business-type" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out">
+                        <option value="">Select a type</option>
+                        <option value="sole-proprietorship">Sole Proprietorship</option>
+                        <option value="llc">Limited Liability Company (LLC)</option>
+                        <option value="corporation">Corporation</option>
+                        <option value="non-profit">Non-Profit Organization</option>
+                        <option value="partnership">Partnership</option>
+                    </select>
+                </div>
+
+                <!-- Business Address -->
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Business Address</label>
+                    <input type="text" name="address" id="address" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out"
+                        placeholder="Street, City, Zip">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Contact Person -->
+                    <div>
+                        <label for="contact-person" class="block text-sm font-medium text-gray-700 mb-1">Contact
+                            Person</label>
+                        <input type="text" name="contact-person" id="contact-person" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out"
+                            placeholder="Full Name">
+                    </div>
+
+                    <!-- Email Address -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" name="email" id="email" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out"
+                            placeholder="email@example.com">
+                    </div>
+                </div>
+
+                <!-- Phone Number -->
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <input type="tel" name="phone" id="phone" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out"
+                        placeholder="+1 (555) 555-5555">
+                </div>
+
+                <!-- File Upload -->
+                <div>
+                    <label for="br-file" class="block text-sm font-medium text-gray-700 mb-1">Government Registered
+                        Business File</label>
+                    <input type="file" name="br-file" id="br-file" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-700 focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out">
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit"
+                        class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-200 ease-in-out">
+                        Register Business
+                    </button>
+                </div>
+            </form>
         </div>
-
-        <form action="#" method="POST" class="space-y-6">
-            <!-- Business Name -->
-            <div>
-                <label for="business-name" class="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
-                <input type="text" name="business-name" id="business-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out" placeholder="e.g., ZenLeaf Inc.">
-            </div>
-
-            <!-- Business Type -->
-            <div>
-                <label for="business-type" class="block text-sm font-medium text-gray-700 mb-1">Business Type</label>
-                <select id="business-type" name="business-type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out">
-                    <option value="">Select a type</option>
-                    <option value="sole-proprietorship">Sole Proprietorship</option>
-                    <option value="llc">Limited Liability Company (LLC)</option>
-                    <option value="corporation">Corporation</option>
-                    <option value="non-profit">Non-Profit Organization</option>
-                    <option value="partnership">Partnership</option>
-                </select>
-            </div>
-
-            <!-- Business Address -->
-            <div>
-                <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Business Address</label>
-                <input type="text" name="address" id="address" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out" placeholder="Street, City, Zip">
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Contact Person -->
-                <div>
-                    <label for="contact-person" class="block text-sm font-medium text-gray-700 mb-1">Contact Person</label>
-                    <input type="text" name="contact-person" id="contact-person" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out" placeholder="Full Name">
-                </div>
-
-                <!-- Email Address -->
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                    <input type="email" name="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out" placeholder="email@example.com">
-                </div>
-            </div>
-
-            <!-- Phone Number -->
-            <div>
-                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                <input type="tel" name="phone" id="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out" placeholder="+1 (555) 555-5555">
-            </div>
-
-            <!-- File Upload -->
-            <div>
-                <label for="br-file" class="block text-sm font-medium text-gray-700 mb-1">Government Registered Business File</label>
-                <input type="file" name="br-file" id="br-file" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-700 focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out">
-            </div>
-
-            <!-- Submit Button -->
-            <div>
-                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-200 ease-in-out">
-                    Register Business
-                </button>
-            </div>
-        </form>
     </div>
 
+
+
 </body>
+
 </html>

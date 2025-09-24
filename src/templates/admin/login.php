@@ -1,5 +1,3 @@
-<!-- A single login page for all users -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +28,41 @@
             <h1 class="text-2xl font-bold text-white mb-2">ZenLeaf Admin</h1>
             <p class="text-gray-200 text-sm">Please sign in to your account</p>
         </div>
+        <?php
+        $error_message = '';
+        if (isset($_GET['error'])) {
+            switch ($_GET['error']) {
+                case 'user_not_found':
+                    $error_message = 'No account found with that email.';
+                    break;
+                case 'wrong_password':
+                    $error_message = 'Incorrect password. Please try again.';
+                    break;
+                case 'invalid_type':
+                    $error_message = 'Invalid user type.';
+                    break;
+                case 'not_logged_in':
+                    $error_message = 'You must log in to access that page.';
+                    break;
+                case 'access_denied':
+                    $error_message = 'Access denied. Admins only.';
+                    break;
+                case 'pass_error':
+                    $error_message = 'Passwords do not match.';
+                    break;
+                default:
+                    $error_message = 'Something went wrong. Please try again.';
+            }
+        }
+        ?>
+
+        <?php if (!empty($error_message)): ?>
+            <div class="m-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                <?php echo htmlspecialchars($error_message); ?>
+            </div>
+
+        <?php endif; ?>
+
 
         <form method="POST" action="../../backend/admin/admin_auth.php" class="p-8">
 
@@ -77,42 +110,3 @@
 </body>
 
 </html>
-
-<?php
-$error_message = '';
-if (isset($_GET['error'])) {
-    switch ($_GET['error']) {
-        case 'user_not_found':
-            $error_message = 'No account found with that email.';
-            break;
-        case 'wrong_password':
-            $error_message = 'Incorrect password. Please try again.';
-            break;
-        case 'invalid_type':
-            $error_message = 'Invalid user type.';
-            break;
-        case 'not_logged_in':
-            $error_message = 'You must log in to access that page.';
-            break;
-        case 'access_denied':
-            $error_message = 'Access denied. Admins only.';
-            break;
-        case 'pass_error':
-            $error_message = 'Passwords do not match.';
-            break;
-        default:
-            $error_message = 'Something went wrong. Please try again.';
-    }
-}
-?>
-
-<?php if (!empty($error_message)) : ?>
-<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-    <?php echo htmlspecialchars($error_message); ?>
-</div>
-<?php endif; ?>
-
-
-<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-    <?php echo htmlspecialchars($error_message); ?>
-</div>

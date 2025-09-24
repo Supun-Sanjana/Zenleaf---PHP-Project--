@@ -1,5 +1,5 @@
 <?php
-include('../../backend/admin_auth.php');
+include('../../backend/admin/admin_auth.php');
 ?>
 
 

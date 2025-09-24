@@ -28,9 +28,34 @@
                 class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
                 <i class="fas fa-seedling text-white text-3xl"></i>
             </div>
-            <h1 class="text-2xl font-bold text-white mb-2">ZenLeaf Admin</h1>
+            <h1 class="text-2xl font-bold text-white mb-2">ZenLeaf</h1>
             <p class="text-gray-200 text-sm">Please sign in to your account</p>
         </div>
+
+        <?php
+        $error_message = '';
+        if (isset($_GET['error'])) {
+            switch ($_GET['error']) {
+                case 'user_not_found':
+                    $error_message = 'No account found with that email.';
+                    break;
+                case 'wrong_password':
+                    $error_message = 'Incorrect password.';
+                    break;
+                case 'invalid_type':
+                    $error_message = 'Only customers can log in here.';
+                    break;
+                default:
+                    $error_message = 'Something went wrong. Please try again.';
+            }
+        }
+        ?>
+
+        <?php if (!empty($error_message)): ?>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 m-5">
+                <?php echo htmlspecialchars($error_message); ?>
+            </div>
+        <?php endif; ?>
 
         <form method="POST" action="../src/backend/customer/auth.php" class="p-8">
 
@@ -88,28 +113,3 @@
 </body>
 
 </html>
-
-<?php
-$error_message = '';
-if (isset($_GET['error'])) {
-    switch ($_GET['error']) {
-        case 'user_not_found':
-            $error_message = 'No account found with that email.';
-            break;
-        case 'wrong_password':
-            $error_message = 'Incorrect password.';
-            break;
-        case 'invalid_type':
-            $error_message = 'Only customers can log in here.';
-            break;
-        default:
-            $error_message = 'Something went wrong. Please try again.';
-    }
-}
-?>
-
-<?php if (!empty($error_message)): ?>
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-        <?php echo htmlspecialchars($error_message); ?>
-    </div>
-<?php endif; ?>

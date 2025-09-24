@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         if (password_verify($password, $row['password'])) {
 
             // Check if user is a customer
-            if (strtolower($row['type']) === 'customer') {
+            if (strtolower($row['type']) === 'customer' || strtolower($row['type']) === 'admin') {
 
                 // Set session variables
                 $_SESSION['user_id'] = $row['user_id'];
@@ -30,11 +30,7 @@ if (isset($_POST['submit'])) {
                 header("Location: ../../../public/index.php");
                 exit;
 
-            } else {
-                // Not a customer
-                header("Location: ../../../public/login.php?error=invalid_type");
-                exit;
-            }
+            } 
 
         } else {
             // Wrong password

@@ -106,7 +106,7 @@
                 <label for="profile_image" class="block text-sm font-medium text-gray-700 mb-2">
                     Upload Profile Image
                 </label>
-                <input id="profile_image" type="file" name="profile_image" accept="image/*" required class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900
+                <input id="profile_image" type="file" name="image" accept="image/*" required class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900
              focus:outline-none focus:ring-2 focus:ring-[#00a8a3] focus:border-transparent
              transition-all duration-200">
             </div>
