@@ -29,7 +29,7 @@ session_start();
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
-                <a href="/" class="flex items-center space-x-2">
+                <a href="/Zenleaf---PHP-Project--/public/" class="flex items-center space-x-2">
                     <div class="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
                         <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path
