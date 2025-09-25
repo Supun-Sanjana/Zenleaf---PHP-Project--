@@ -28,7 +28,7 @@ $categoryColors = [
 
 <body class="bg-gray-100 p-6">
     <div class="m-5 ml-10 mx-auto">
-        <h1 class="text-3xl font-bold text-emerald-400 mb-6">Products</h1>
+        <h1 class="text-3xl font-bold text-emerald-700 mb-6">Products</h1>
         <div class="mb-4">
             <?php if (isset($_SESSION['success'])): ?>
                 <div class="bg-green-500 w-[200px] text-white px-4 py-2 mb-4 rounded">
