@@ -57,7 +57,9 @@ $suppliers = fetchSuppliers($con);
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!-- HTML Table -->
-<div class="bg-gray-800 p-8 rounded-lg shadow-xl">
+ <div class="bg-gray-800 h-full ">
+    <div class="bg-gray-900 p-8 shadow-xl rounded-xl">
+   
     <h2 class="text-3xl font-bold text-emerald-400 mb-6">Supplier Management 🚚</h2>
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-700">
@@ -100,3 +102,4 @@ $suppliers = fetchSuppliers($con);
         </table>
     </div>
 </div>
+ </div>

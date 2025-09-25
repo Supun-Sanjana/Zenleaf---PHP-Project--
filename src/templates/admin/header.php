@@ -13,7 +13,7 @@
     <?php if (isset($_SESSION['user_id'])): ?>
         <div class="relative flex items-center space-x-4">
             <div>
-                <span class="text-sm">
+                <span class="text-sm text-white">
                     Welcome, <?= isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : 'Admin' ?>
                 </span>
             </div>

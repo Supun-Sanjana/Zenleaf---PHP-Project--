@@ -26,7 +26,7 @@
                 <p class="text-gray-600">Please fill out the form to register your business.</p>
             </div>
 
-            <form action="#" method="POST" class="space-y-6">
+            <form action="../../backend/supplier/insert_br.php" method="POST" class="space-y-6" enctype="multipart/form-data">
                 <!-- Business Name -->
                 <div>
                     <label for="business-name" class="block text-sm font-medium text-gray-700 mb-1">Business
@@ -34,21 +34,6 @@
                     <input type="text" name="business-name" id="business-name" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out"
                         placeholder="e.g., ZenLeaf Inc.">
-                </div>
-
-                <!-- Business Type -->
-                <div>
-                    <label for="business-type" class="block text-sm font-medium text-gray-700 mb-1">Business
-                        Type</label>
-                    <select id="business-type" name="business-type" required
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out">
-                        <option value="">Select a type</option>
-                        <option value="sole-proprietorship">Sole Proprietorship</option>
-                        <option value="llc">Limited Liability Company (LLC)</option>
-                        <option value="corporation">Corporation</option>
-                        <option value="non-profit">Non-Profit Organization</option>
-                        <option value="partnership">Partnership</option>
-                    </select>
                 </div>
 
                 <!-- Business Address -->
@@ -62,9 +47,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Contact Person -->
                     <div>
-                        <label for="contact-person" class="block text-sm font-medium text-gray-700 mb-1">Contact
-                            Person</label>
-                        <input type="text" name="contact-person" id="contact-person" required
+                        <label for="full-name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" name="full-name" id="full-name" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 transition duration-150 ease-in-out"
                             placeholder="Full Name">
                     </div>
