@@ -43,7 +43,8 @@ $suppliers = fetchSuppliers($con);
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" />
 
 <div class="bg-gray-800 min-h-screen p-6">
     <div class="bg-gray-900 p-8 shadow-xl rounded-xl">
@@ -90,8 +91,7 @@ $suppliers = fetchSuppliers($con);
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-400">
                                     <?php if (!empty($supplier['b_certificate'])): ?>
-                                        <button 
-                                            onclick="openBRModal('<?= htmlspecialchars($supplier['b_certificate']) ?>')" 
+                                        <button onclick="openBRModal('<?= htmlspecialchars($supplier['b_certificate']) ?>')"
                                             class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs">
                                             Preview BR
                                         </button>
@@ -115,18 +115,21 @@ $suppliers = fetchSuppliers($con);
 <!-- Modal -->
 <div id="brModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
     <div class="bg-white rounded-lg shadow-lg w-3/4 max-w-3xl p-4 relative">
-        <button onclick="closeBRModal()" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-xl">&times;</button>
-        <iframe id="brFrame" src="" class="w-full h-96 rounded-lg border" frameborder="0"></iframe>
+        <button onclick="closeBRModal()"
+            class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+        <iframe id="brFrame" src="<?= htmlspecialchars($supplier['b_certificate']) ?>"
+            class="w-full h-96 rounded-lg border"></iframe>
     </div>
 </div>
 
+
 <script>
-function openBRModal(filePath) {
-    document.getElementById('brFrame').src = filePath;
-    document.getElementById('brModal').classList.remove('hidden');
-}
-function closeBRModal() {
-    document.getElementById('brFrame').src = '';
-    document.getElementById('brModal').classList.add('hidden');
-}
+    function openBRModal(filePath) {
+        document.getElementById('brFrame').src = filePath;
+        document.getElementById('brModal').classList.remove('hidden');
+    }
+    function closeBRModal() {
+        document.getElementById('brFrame').src = '';
+        document.getElementById('brModal').classList.add('hidden');
+    }
 </script>
