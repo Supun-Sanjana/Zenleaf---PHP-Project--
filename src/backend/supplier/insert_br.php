@@ -11,8 +11,20 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$user_id = $_SESSION['user_id']; 
+$user_id = $_SESSION['user_id'];
 
+// ✅ Check if supplier already uploaded a BR
+$check = $con->prepare("SELECT id FROM business_reg WHERE user_id = ?");
+$check->bind_param("s", $user_id);
+$check->execute();
+$check->store_result();
+
+if ($check->num_rows > 0) {
+    echo "<p class='text-red-600 font-bold'>You have already submitted a business registration file. Please wait for admin review.</p>";
+    $check->close();
+    exit;
+}
+$check->close();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -36,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (move_uploaded_file($file_tmp, $target_file)) {
             // File uploaded successfully, now insert data
             $stmt = $con->prepare("INSERT INTO business_reg (user_id, b_name, b_address, full_name, email, p_number, b_certificate) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssss", $user_id,$business_name, $address, $full_name, $email, $phone, $target_file);
+            $stmt->bind_param("sssssss", $user_id, $business_name, $address, $full_name, $email, $phone, $target_file);
 
             if ($stmt->execute()) {
                 echo "<p class='text-green-600 font-bold'>Business registered successfully!</p>";

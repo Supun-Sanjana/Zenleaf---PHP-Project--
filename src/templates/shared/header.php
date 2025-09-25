@@ -92,11 +92,11 @@ foreach ($cart as $it) {
 
               <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg py-2 z-50">
                 <a href="/update_profile.php" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-emerald-400">Update Profile</a>
-                <a href="/auth_logout.php" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-emerald-400">Logout</a>
+                <a href="../src/backend/customer/auth_logout.php" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 hover:text-emerald-400">Logout</a>
               </div>
             </div>
           <?php else: ?>
-            <a href="/login.php"
+            <a href="./login.php"
               class="px-4 py-2 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors">Login</a>
           <?php endif; ?>
         </div>
