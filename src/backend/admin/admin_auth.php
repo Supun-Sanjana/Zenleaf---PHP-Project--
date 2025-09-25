@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
                 // Set session variables
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['user_name'] = $row['user_name'];
-                $_SESSION['type'] = $row['type'];
+                $_SESSION['type'] = trim($row['type']); // ✅ fixed
 
                 // Redirect to admin dashboard
                 header("Location: ../../templates/admin/index.php");
@@ -40,6 +40,16 @@ if (isset($_POST['submit'])) {
     } else {
         // User not found
         header("Location: ../../templates/admin/login.php?error=user_not_found");
+        exit;
+    }
+}
+
+// Admin check function
+function checkAdmin()
+{
+     
+    if (!isset($_SESSION['type']) || strtolower($_SESSION['type']) !== 'admin') {
+        header("Location: login.php?error=not_logged_in");
         exit;
     }
 }

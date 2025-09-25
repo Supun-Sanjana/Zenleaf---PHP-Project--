@@ -1,8 +1,6 @@
 <?php
 include("../../lib/database.php");
-
 session_start();
-
 
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id']; // logged-in user
@@ -10,7 +8,6 @@ if (isset($_SESSION['user_id'])) {
     // redirect or show error if not logged in
     die("User not logged in");
 }
-echo $user_id;
 
 if (isset($_POST['submit'])) {
     $product_name = $_POST['name'];
@@ -25,9 +22,6 @@ if (isset($_POST['submit'])) {
 
 
     }
-
-    echo $category_str;
-
 
     /** IMAGE UPLOAD **/
     $imageToSave = ''; // fallback just in case
@@ -57,14 +51,12 @@ if (isset($_POST['submit'])) {
 
     $product_id = generateProductId($con);
 
-    echo $product_id;
-
-
     // Example: save to DB
     $sql = "INSERT INTO products (product_id ,user_id, product_name, categories,discription, price,image, qty ) 
             VALUES ('$product_id','$user_id', '$product_name', '$category_str','$description', '$price','$imageToSave', '$quantity')";
     mysqli_query($con, $sql);
 
+    header("Location: ../../templates/supplier/index.php?msg=added");
 
 }
 ?>

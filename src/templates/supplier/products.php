@@ -1,3 +1,22 @@
+<?php
+include("../../lib/database.php");
+// Fetch products from DB
+function fetchProducts($con)
+{
+    $products = [];
+    $sql = "SELECT product_id, product_name, categories, qty, price FROM products ORDER BY id DESC";
+    $result = mysqli_query($con, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $products[] = $row;
+        }
+    }
+    return $products;
+}
+?>
+
+
 <div class="bg-gray-800 p-8 rounded-lg shadow-xl">
     <h2 class="text-3xl font-bold text-emerald-400 mb-6">Product Management 🌿</h2>
     <div class="overflow-x-auto">
@@ -8,27 +27,45 @@
                     <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">Category</th>
                     <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">Stock</th>
                     <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">Price</th>
+                    <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">Action</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-800 bg-gray-800">
-                <tr>
-                    <td class="px-4 py-4 text-sm font-medium text-gray-200">Peace Lily</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">Flowering</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">150</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">$25.00</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-4 text-sm font-medium text-gray-200">Snake Plant</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">Indoor Plants</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">200</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">$30.00</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-4 text-sm font-medium text-gray-200">Monstera Deliciosa</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">Foliage</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">80</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">$45.00</td>
-                </tr>
+                <?php
+                $products = fetchProducts($con);
+                if (!empty($products)) {
+                    foreach ($products as $product) {
+                        echo "<tr>";
+                        echo "<td class='px-4 py-4 text-sm font-medium text-gray-200'>" . htmlspecialchars($product['product_name']) . "</td>";
+                        echo "<td class='px-4 py-4 text-sm text-gray-400'>" . htmlspecialchars($product['categories']) . "</td>";
+                        echo "<td class='px-4 py-4 text-sm text-gray-400'>" . htmlspecialchars($product['qty']) . "</td>";
+                        echo "<td class='px-4 py-4 text-sm text-gray-400'>$" . number_format($product['price'], 2) . "</td>";
+
+                        // Action column
+                        echo "<td class='px-4 py-4 text-sm text-gray-400 flex gap-2'>";
+
+                        // Update button (redirect to edit page with product_id)
+                        echo "<a href='../../backend/supplier/update_product.php?id=" . urlencode($product['product_id']) . "' 
+                class='bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs'>
+                Update
+              </a>";
+
+                        // Delete button (calls delete script with confirmation)
+                        echo "<a href='../../backend/supplier/delete_product.php?id=" . urlencode($product['product_id']) . "' 
+                onclick=\"return confirm('Are you sure you want to delete this product?');\"
+                class='bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs'>
+                Delete
+              </a>";
+
+                        echo "</td>";
+
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='5' class='px-4 py-4 text-center text-sm text-gray-400'>No products found</td></tr>";
+                }
+                ?>
+
             </tbody>
         </table>
     </div>

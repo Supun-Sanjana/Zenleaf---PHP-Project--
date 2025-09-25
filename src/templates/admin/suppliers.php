@@ -1,66 +1,102 @@
-<?php include './header.php' ?>
+<?php
+include("../../lib/database.php");
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZenLeaf Admin Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <style>
-        .leaf-decoration {
-            background-color: rgba(45, 212, 191, 0.1);
-            border-radius: 9999px 0;
-            animation: float 8s ease-in-out infinite;
+include("../../backend/admin/admin_auth.php");
+
+// This will check if admin is logged in, otherwise redirect
+checkAdmin();
+
+// Check admin
+if (!isset($_SESSION['type']) || $_SESSION['type'] != 'admin') {
+    die("Access denied.");
+}
+
+// Handle approve toggle
+if (isset($_POST['toggle_approve']) && isset($_POST['user_id'])) {
+    $user_id = $_POST['user_id'];
+
+    // Get current approve status
+    $res = mysqli_query($con, "SELECT approve FROM users WHERE user_id='$user_id' AND type='supplier'");
+    if (mysqli_num_rows($res) == 1) {
+        $row = mysqli_fetch_assoc($res);
+        $newStatus = $row['approve'] ? 0 : 1;
+        mysqli_query($con, "UPDATE users SET approve='$newStatus' WHERE user_id='$user_id'");
+    }
+
+    // Redirect to sam01e page to avoid resubmission
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Fetch suppliers
+function fetchSuppliers($con)
+{
+    $suppliers = [];
+    $sql = "SELECT user_id, first_name, user_name, email, approve FROM users WHERE type='supplier' ORDER BY id DESC";
+    $result = mysqli_query($con, $sql);
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $suppliers[] = $row;
         }
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-    </style>
-</head>
+    }
+    return $suppliers;
+}
 
+$suppliers = fetchSuppliers($con);
+?>
+<?php include './header.php'; ?>
 
-<body class="bg-gray-900 text-gray-100 font-sans">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
 
+<!-- Optional: Flowbite for components like modals, dropdowns -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+
+<!-- Optional: Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- HTML Table -->
 <div class="bg-gray-800 p-8 rounded-lg shadow-xl">
-    <h2 class="text-3xl font-bold text-emerald-400 mb-6">Supplier Information 🚚</h2>
+    <h2 class="text-3xl font-bold text-emerald-400 mb-6">Supplier Management 🚚</h2>
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-700">
             <thead class="bg-gray-700">
                 <tr>
-                    <th scope="col" class="py-3.5 px-4 text-left text-sm font-semibold text-gray-300">Supplier Name</th>
-                    <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">Contact Person</th>
-                    <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">Email</th>
-                    <th scope="col" class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">City</th>
+                    <th class="py-3.5 px-4 text-left text-sm font-semibold text-gray-300">First Name</th>
+                    <th class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">User Name</th>
+                    <th class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">Email</th>
+                    <th class="px-4 py-3.5 text-left text-sm font-semibold text-gray-300">Approve</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-800 bg-gray-800">
-                <tr>
-                    <td class="px-4 py-4 text-sm font-medium text-gray-200">Green Thumb Nursery</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">Jane Doe</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">jane.doe@greenthumb.com</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">Los Angeles</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-4 text-sm font-medium text-gray-200">Tropical Imports Inc.</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">John Smith</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">john.smith@tropical.com</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">Miami</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-4 text-sm font-medium text-gray-200">Eco-Grow Supplies</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">Alex Chen</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">alex.c@ecogrow.net</td>
-                    <td class="px-4 py-4 text-sm text-gray-400">Seattle</td>
-                </tr>
+                <?php if (!empty($suppliers)): ?>
+                    <?php foreach ($suppliers as $supplier): ?>
+                        <tr>
+                            <td class="px-4 py-4 text-sm font-medium text-gray-200">
+                                <?= htmlspecialchars($supplier['first_name']) ?></td>
+                            <td class="px-4 py-4 text-sm text-gray-400"><?= htmlspecialchars($supplier['user_name']) ?></td>
+                            <td class="px-4 py-4 text-sm text-gray-400"><?= htmlspecialchars($supplier['email']) ?></td>
+                            <td class="px-4 py-4 text-sm text-gray-400">
+                                <form method="POST" style="display:inline;">
+                                    <input type="hidden" name="user_id" value="<?= $supplier['user_id'] ?>">
+                                    <?php if ($supplier['approve']): ?>
+                                        <button type="submit" name="toggle_approve"
+                                            class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs">Disapprove</button>
+                                    <?php else: ?>
+                                        <button type="submit" name="toggle_approve"
+                                            class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs">Approve</button>
+                                    <?php endif; ?>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4" class="px-4 py-4 text-center text-sm text-gray-400">No suppliers found</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-</body>
-</html>
