@@ -1,30 +1,25 @@
 <?php
 include("../../lib/database.php");
-session_start(); // Start session to store login info
+session_start();
 
 if (isset($_POST['submit'])) {
-
     $email = trim($_POST['email']);
-    $password = $_POST['password']; // Raw password input
-
-    // Use prepared statement to prevent SQL injection
+    $password = $_POST['password'];
+    
     $stmt = $con->prepare("SELECT user_id, user_name, first_name, password, type FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result && $row = $result->fetch_assoc()) {
-        
-        // Verify password (assuming bcrypt hash stored in DB)
+
         if (password_verify($password, $row['password'])) {
 
-            // Set session variables
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['user_name'] = $row['user_name'];
             $_SESSION['first_name'] = $row['first_name'];
             $_SESSION['type'] = $row['type'];
 
-            // Redirect based on type (optional)
             if ($row['type'] === 'supplier') {
                 header("Location: ../../templates/supplier/index.php");
             } else {
@@ -33,18 +28,13 @@ if (isset($_POST['submit'])) {
             exit;
 
         } else {
-            // Wrong password
             header("Location: ../../../public/login.php?error=wrong_password");
             exit;
         }
 
     } else {
-        // User not found
         header("Location: ../../../public/login.php?error=user_not_found");
         exit;
     }
-
-    $stmt->close();
-    $con->close();
 }
 ?>

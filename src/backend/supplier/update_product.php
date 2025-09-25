@@ -30,7 +30,7 @@ if (isset($_POST['update_product'])) {
     $qty = intval($_POST['qty']);
     $price = floatval($_POST['price']);
 
-    $update = mysqli_query($con, "UPDATE products SET 
+    $update = mysqli_query($con, "UPDATE products SET
         product_name='$name',
         categories='$categories',
         qty='$qty',
@@ -113,8 +113,6 @@ if (isset($_POST['update_product'])) {
                     }
                     ?>
                 </div>
-
-
             </div>
         </div>
 

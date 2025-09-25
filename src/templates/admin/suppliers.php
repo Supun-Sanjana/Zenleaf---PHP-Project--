@@ -16,7 +16,6 @@ if (isset($_POST['toggle_approve']) && isset($_POST['user_id'])) {
     header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
-
 // Fetch suppliers + business reg
 function fetchSuppliers($con)
 {

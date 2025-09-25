@@ -8,7 +8,6 @@ if (isset($_POST['submit'])) {
     $user_name = trim($_POST['user_name']);
     $type = trim($_POST['type']);
 
-    // Password match check
     if ($_POST['password'] !== $_POST['password_confirmation']) {
         header("Location: ../../../public/login.php?pass_error=true");
         exit;
@@ -16,7 +15,6 @@ if (isset($_POST['submit'])) {
 
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    // User ID generator
     function generateUserId($type)
     {
         $type = strtolower(trim($type));
@@ -44,11 +42,8 @@ if (isset($_POST['submit'])) {
         }
     }
 
-
-
-    /** INSERT USER **/
-    $stmt = $con->prepare("INSERT INTO users 
-        (user_id, first_name, last_name, user_name, email, password, type, image) 
+    $stmt = $con->prepare("INSERT INTO users
+        (user_id, first_name, last_name, user_name, email, password, type, image)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
     // Bind all 8 values

@@ -1,9 +1,7 @@
 <?php
 include('../../backend/admin/admin_auth.php');
-// This will check if admin is logged in, otherwise redirect
 checkAdmin();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

@@ -39,6 +39,4 @@
         <a href="/login.php"
             class="px-4 py-2 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition-colors">Login</a>
     <?php endif; ?>
-
-
 </header>

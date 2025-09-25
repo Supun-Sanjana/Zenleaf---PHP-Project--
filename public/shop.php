@@ -2,17 +2,16 @@
 require_once '../src/templates/shared/header.php';
 include("../src/lib/database.php");
 
-// Fetch approved products from the database
 $sql = "SELECT * FROM products WHERE approve = 1 ORDER BY id DESC";
 $result = mysqli_query($con, $sql);
 
-// Define colors for categories
+
 $categoryColors = [
     'flowering' => 'bg-pink-500',
     'miniature' => 'bg-blue-500',
     'succulent' => 'bg-green-500',
     'herb' => 'bg-yellow-500',
-    // Add more categories here
+
 ];
 ?>
 
@@ -89,5 +88,4 @@ $categoryColors = [
         </div>
     </div>
 </body>
-
 </html>
