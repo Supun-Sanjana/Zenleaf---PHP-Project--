@@ -29,6 +29,21 @@ $categoryColors = [
 <body class="bg-gray-100 p-6">
     <div class="m-5 ml-10 mx-auto">
         <h1 class="text-3xl font-bold text-emerald-400 mb-6">Products</h1>
+        <div class="mb-4">
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="bg-green-500 w-[200px] text-white px-4 py-2 mb-4 rounded">
+                    <?= $_SESSION['success'];
+                    unset($_SESSION['success']); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['error'])): ?>
+                <div class="bg-red-500 text-white px-4 py-2 mb-4 rounded">
+                    <?= $_SESSION['error'];
+                    unset($_SESSION['error']); ?>
+                </div>
+            <?php endif; ?>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             <?php if ($result && mysqli_num_rows($result) > 0): ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
@@ -46,7 +61,7 @@ $categoryColors = [
                             foreach ($categories as $cat):
                                 $cat = trim($cat);
                                 $color = $categoryColors[$cat] ?? 'bg-gray-400';
-                            ?>
+                                ?>
                                 <span class="text-white text-xs font-semibold px-2 py-1 rounded <?= $color ?>">
                                     <?= ucfirst($cat) ?>
                                 </span>
@@ -54,7 +69,7 @@ $categoryColors = [
                         </div>
 
                         <p class="text-gray-800 font-semibold mb-2">$<?= number_format($row['price'], 2) ?></p>
-                        <form action="add_to_cart.php" method="POST" class="mt-auto">
+                        <form action="../src/backend/add_to_cart.php" method="POST" class="mt-auto">
                             <input type="hidden" name="product_id" value="<?= $row['product_id'] ?>">
                             <div class="flex gap-6">
                                 <input type="number" name="qty" value="1" min="1" max="<?= $row['qty'] ?>"
