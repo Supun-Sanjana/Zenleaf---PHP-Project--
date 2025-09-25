@@ -135,7 +135,8 @@ foreach ($cart as $item) {
       <p class="flex justify-between text-lg font-semibold">
         <span>Total:</span> <span>$<?= number_format($total,2) ?></span>
       </p>
-      <a href="/checkout.php" class="block text-center w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg font-medium transition-colors">Proceed to Checkout</a>
+      <a href="../src/templates/shared/checkout.php" class="block text-center w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg font-medium transition-colors">
+        Proceed to Checkout</a>
     </div>
   <?php endif; ?>
 </aside>
