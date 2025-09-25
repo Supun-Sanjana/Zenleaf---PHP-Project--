@@ -11,5 +11,5 @@ if (isset($_POST['product_id'])) {
 }
 
 // Redirect back to cart preview
-header("Location: preview_modle.php");
+header("Location: .././../../public/shop.php");
 exit();

@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $cart = $_SESSION['cart'] ?? [];
 $total = 0;
 $totalItems = 0;
@@ -24,6 +25,8 @@ foreach ($cart as $it) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZenLeaf Cart Panel</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 </head>
@@ -49,9 +52,15 @@ foreach ($cart as $it) {
   <div id="cart-panel"
     class="fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
     <div class="flex justify-between items-center p-4 border-b">
-      <h2 class="text-lg font-semibold text-emerald-600">Shopping Cart</h2>
+      <h2 class="text-lg font-semibold text-emerald-600">Shopping Cart 1</h2>
       <button id="close-cart" class="text-gray-600 hover:text-red-500">
         <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+      <button type="submit" class="text-red-500 hover:text-red-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </button>
     </div>
 
@@ -66,8 +75,9 @@ foreach ($cart as $it) {
                 <?php echo htmlspecialchars($item['quantity']); ?>
               </p>
             </div>
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-2 ">
               <span class="font-semibold">$<?php echo number_format($item['price'] * $item['quantity'], 2); ?></span>
+
               <!-- Remove button -->
               <form action="remove_from_cart.php" method="POST">
                 <input type="hidden" name="product_id" value="<?php echo $id; ?>">
@@ -87,15 +97,7 @@ foreach ($cart as $it) {
       <?php endif; ?>
     </div>
 
-    <div class="p-4 border-t">
-      <p class="flex justify-between text-lg font-semibold">
-        <span>Total:</span> <span>$<?php echo number_format($total, 2); ?></span>
-      </p>
-      <button
-        class="w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg font-medium transition-colors">
-        Checkout
-      </button>
-    </div>
+
   </div>
 
   <script>

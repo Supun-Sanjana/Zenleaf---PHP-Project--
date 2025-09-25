@@ -37,8 +37,8 @@ if (isset($_POST['product_id'], $_POST['qty'])) {
                 'name'       => $product['product_name'],
                 'price'      => (float)$product['price'],
                 'image'      => $product['image'],
-                'quantity'   => $qty,
-                'stock'      => (int)$product['qty']
+                'quantity'   => $qty
+
             ];
         }
 

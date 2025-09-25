@@ -37,7 +37,7 @@ foreach ($cart as $id => $item) {
       Continue Shopping
     </a>
 
-    <h1 class="mt-6 text-3xl font-semibold text-emerald-500">Shopping Cart</h1>
+    <h1 class="mt-6 text-3xl font-semibold text-emerald-500">Shopping Cart 1</h1>
     <hr class="mt-4 border-gray-300" />
 
     <?php if (count($cart) > 0): ?>
@@ -70,7 +70,7 @@ foreach ($cart as $id => $item) {
         <div class="bg-white shadow rounded-xl p-6 w-full max-w-sm">
           <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
           <p class="text-lg mb-6">Total: <span class="font-bold">$<?php echo htmlspecialchars($total); ?></span></p>
-          <form action="cart-checkout.php" method="POST">
+          <form action="checkout.php" method="POST">
             <button type="submit"
               class="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-lg font-medium transition-colors">
               Proceed to Checkout
