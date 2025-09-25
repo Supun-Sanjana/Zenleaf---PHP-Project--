@@ -70,7 +70,8 @@ $categoryColors = [
 
                         <p class="text-gray-800 font-semibold mb-2">$<?= number_format($row['price'], 2) ?></p>
                         <form action="../src/backend/add_to_cart.php" method="POST" class="mt-auto">
-                            <input type="hidden" name="product_id" value="<?= $row['product_id'] ?>">
+                            <input type="hidden" name="product_id" value="<?= htmlspecialchars($row['product_id']) ?>">
+
                             <div class="flex gap-6">
                                 <input type="number" name="qty" value="1" min="1" max="<?= $row['qty'] ?>"
                                     class="w-full mb-2 px-2 py-1 border rounded-md">

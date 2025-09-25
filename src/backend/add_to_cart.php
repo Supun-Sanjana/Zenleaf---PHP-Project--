@@ -2,34 +2,43 @@
 session_start();
 include("../lib/database.php");
 
-// Check if product ID and quantity are sent
+// Expect product_id as string (e.g. "P12345") and qty as integer
 if (isset($_POST['product_id'], $_POST['qty'])) {
-    $product_id = intval($_POST['product_id']);
+    $product_id = trim($_POST['product_id']); // keep as string
     $qty = intval($_POST['qty']);
+    if ($qty < 1) $qty = 1;
 
-    // Fetch product details from DB
+    // Fetch product by product_id (string)
     $sql = "SELECT * FROM products WHERE product_id = ?";
     $stmt = mysqli_prepare($con, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $product_id);
+    mysqli_stmt_bind_param($stmt, "s", $product_id); // <-- use "s" not "i"
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
     if ($product = mysqli_fetch_assoc($result)) {
-        // Create cart array if not exists
-        if (!isset($_SESSION['cart'])) {
+        if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
 
-        // If product already in cart, update quantity
+        // Use product_id (string) as the session key so different products don't collide
         if (isset($_SESSION['cart'][$product_id])) {
-            $_SESSION['cart'][$product_id]['qty'] += $qty;
+            // Update quantity
+            $_SESSION['cart'][$product_id]['quantity'] += $qty;
+
+            // Optional: cap at stock
+            if (isset($product['qty']) && $_SESSION['cart'][$product_id]['quantity'] > (int)$product['qty']) {
+                $_SESSION['cart'][$product_id]['quantity'] = (int)$product['qty'];
+                $_SESSION['error'] = "Only {$product['qty']} items available in stock.";
+            }
         } else {
-            // Add new product to cart
+            // New product entry (use 'quantity' everywhere)
             $_SESSION['cart'][$product_id] = [
-                'name' => $product['product_name'],
-                'price' => $product['price'],
-                'image' => $product['image'],
-                'qty' => $qty
+                'product_id' => $product_id,
+                'name'       => $product['product_name'],
+                'price'      => (float)$product['price'],
+                'image'      => $product['image'],
+                'quantity'   => $qty,
+                'stock'      => (int)$product['qty']
             ];
         }
 
@@ -38,7 +47,7 @@ if (isset($_POST['product_id'], $_POST['qty'])) {
         exit;
     } else {
         $_SESSION['error'] = "Product not found!";
-        header("Location: products.php");
+        header("Location: ../../public/shop.php");
         exit;
     }
 } else {

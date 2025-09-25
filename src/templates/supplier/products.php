@@ -1,10 +1,13 @@
 <?php
 include("../../lib/database.php");
+// session_start();
+
+$user_id = $_SESSION['user_id'];
 // Fetch products from DB
-function fetchProducts($con)
+function fetchProducts($con, $user_id)
 {
     $products = [];
-    $sql = "SELECT product_id, product_name, categories, qty, price FROM products ORDER BY id DESC";
+    $sql = "SELECT product_id, product_name, categories, qty, price FROM products Where user_id = '$user_id' ORDER BY id DESC";
     $result = mysqli_query($con, $sql);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -32,7 +35,7 @@ function fetchProducts($con)
             </thead>
             <tbody class="divide-y divide-gray-800 bg-gray-800">
                 <?php
-                $products = fetchProducts($con);
+                $products = fetchProducts($con, $user_id);
                 if (!empty($products)) {
                     foreach ($products as $product) {
                         echo "<tr>";
@@ -45,13 +48,13 @@ function fetchProducts($con)
                         echo "<td class='px-4 py-4 text-sm text-gray-400 flex gap-2'>";
 
                         // Update button (redirect to edit page with product_id)
-                        echo "<a href='../../backend/supplier/update_product.php?id=" . urlencode($product['product_id']) . "' 
+                        echo "<a href='../../backend/supplier/update_product.php?id=" . urlencode($product['product_id']) . "'
                 class='bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs'>
                 Update
               </a>";
 
                         // Delete button (calls delete script with confirmation)
-                        echo "<a href='../../backend/supplier/delete_product.php?id=" . urlencode($product['product_id']) . "' 
+                        echo "<a href='../../backend/supplier/delete_product.php?id=" . urlencode($product['product_id']) . "'
                 onclick=\"return confirm('Are you sure you want to delete this product?');\"
                 class='bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs'>
                 Delete

@@ -1,9 +1,10 @@
 <?php
-// Example data simulation (replace with your real cart logic)
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+session_start(); // ensure this is at the top
+$cart = $_SESSION['cart'] ?? [];
 $total = 0;
-foreach ($cart as $item) {
-  $total += $item['price'] * $item['quantity'];
+foreach ($cart as $id => $item) {
+  $qty = isset($item['quantity']) ? intval($item['quantity']) : 0;
+  $total += $item['price'] * $qty;
 }
 ?>
 <!DOCTYPE html>
@@ -41,7 +42,8 @@ foreach ($cart as $item) {
 
     <?php if (count($cart) > 0): ?>
       <?php foreach ($cart as $id => $item): ?>
-        <div class="mt-6 bg-white shadow rounded-xl p-6 flex flex-col sm:flex-row sm:items-center justify-between hover:shadow-lg transition-shadow">
+        <div
+          class="mt-6 bg-white shadow rounded-xl p-6 flex flex-col sm:flex-row sm:items-center justify-between hover:shadow-lg transition-shadow">
           <div>
             <h3 class="text-lg font-semibold"><?php echo htmlspecialchars($item['name']); ?></h3>
             <p class="text-gray-600">$<?php echo htmlspecialchars($item['price']); ?></p>
