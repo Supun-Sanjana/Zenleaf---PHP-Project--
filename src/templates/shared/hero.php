@@ -119,7 +119,7 @@
                               If this HTML file is in the `public` folder, the path should start from there.
                               I've also added a fallback `onerror` to show a placeholder if the image is not found.
                             -->
-                            <img src="assets/images/hero.png" alt="Premium Indoor Plant"
+                            <img src="../src/templates/shared/hero.png" alt="Premium Indoor Plant"
                                 class="w-full h-auto rounded-2xl shadow-2xl">
 
                             <!-- Floating UI elements -->

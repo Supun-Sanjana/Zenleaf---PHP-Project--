@@ -47,7 +47,7 @@ $categoryColors = [
             <?php if ($result && mysqli_num_rows($result) > 0): ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                     <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col">
-                        <img src="./uploads/products/<?= htmlspecialchars($row['image']) ?>"
+                        <img src="../src/templates/shared/products/<?= htmlspecialchars($row['image']) ?>"
                             alt="<?= htmlspecialchars($row['product_name']) ?>"
                             class="w-full h-48 object-cover rounded-md mb-4">
                         <h3 class="text-lg font-bold text-gray-800"><?= htmlspecialchars($row['product_name']) ?></h3>

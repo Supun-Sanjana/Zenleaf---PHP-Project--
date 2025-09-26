@@ -5,7 +5,7 @@ session_start();
 $cart = $_SESSION['cart'] ?? [];
 $total = 0;
 
-  require_once './header.php';
+//   require_once './header.php';
 ?>
 
 
@@ -34,7 +34,7 @@ $total = 0;
                             <th class="py-2">Price</th>
                             <th class="py-2">Quantity</th>
                             <th class="py-2">Subtotal</th>
-                            <th class="py-2">Action</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -44,7 +44,7 @@ $total = 0;
                             ?>
                             <tr class="border-b">
                                 <td class="py-2 flex items-center gap-3">
-                                    <img src="../public/uploads/products/<?= htmlspecialchars($item['image']) ?>"
+                                    <img src="./products/<?= htmlspecialchars($item['image']) ?>"
                                         class="w-12 h-12 object-cover rounded">
                                     <?= htmlspecialchars($item['name']) ?>
                                 </td>
@@ -54,10 +54,7 @@ $total = 0;
                                         class="w-16 border rounded px-2 py-1 text-center">
                                 </td>
                                 <td class="text-center">$<?= number_format($subtotal, 2) ?></td>
-                                <td class="text-center">
-                                    <a href="../src/templates/cart/remove_from_cart.php?id=<?= $id ?>"
-                                        class="text-red-600 hover:underline">Remove</a>
-                                </td>
+                               
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -72,7 +69,7 @@ $total = 0;
                     </div>
                     <div class="text-right">
                         <p class="text-lg font-semibold">Total: $<?= number_format($total, 2) ?></p>
-                        <a href="checkout.php"
+                        <a href="../shared/Payhere/index.php"
                             class="mt-4 inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
                             Checkout
                         </a>

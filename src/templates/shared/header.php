@@ -47,7 +47,7 @@ foreach ($cart as $item) {
         <a href="#miniature" class="text-gray-700 hover:text-emerald-600 transition-colors">Miniature</a>
         <a href="#accessories" class="text-gray-700 hover:text-emerald-600 transition-colors">Plant Care</a>
         <a href="#about" class="text-gray-700 hover:text-emerald-600 transition-colors">About</a>
-        <a href="./shop.php" class="text-gray-700 hover:text-emerald-600 transition-colors">Shop</a>
+        <a href="../public/shop.php" class="text-gray-700 hover:text-emerald-600 transition-colors">Shop</a>
       </div>
 
       <!-- Right: Cart & User -->
@@ -138,6 +138,7 @@ foreach ($cart as $item) {
       <a href="../src/templates/shared/checkout.php" class="block text-center w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg font-medium transition-colors">
         Proceed to Checkout</a>
     </div>
+    <!--  -->
   <?php endif; ?>
 </aside>
 
